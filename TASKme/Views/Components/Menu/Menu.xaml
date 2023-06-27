@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="TaskMe.Views.Components.Menu.Menu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TaskMe.Views.Components.Menu"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <!-- Menu user control -->
+    <!-- Displays a menu with options and a logout button -->
+    <Grid>
+        <Border BorderBrush="{StaticResource BorderPrimary}" 
+                BorderThickness="1"
+                SnapsToDevicePixels="True">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Image
+                   Grid.Row="0"/> <!-- Placeholder for menu image -->
+                
+
+                <Grid Grid.Row="1">
+                    <!-- Grid for menu options -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        FontSize="16"
+                        Text="Personal"/>
+                    <TextBlock
+                        Grid.Row="1"
+                        FontSize="16"
+                        Text="Work"/>
+                    <TextBlock
+                        Grid.Row="2"
+                        FontSize="16"
+                        Text="Goals"/>
+                    <TextBlock
+                        Grid.Row="3"
+                        FontSize="16"
+                        Text="Finance"/>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <!-- Grid for logout button -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button Style="{StaticResource ButtonPrimer}" 
+                        Grid.Row="0"
+                        Content="Logout"
+                        FontSize="12"
+                        Background="Red"
+                        />
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

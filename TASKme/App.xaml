@@ -1,0 +1,209 @@
+﻿<Application x:Class="TaskMe.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:TaskMe"
+             >
+    <Application.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="BorderPrimary" Color="Gainsboro"/>
+
+
+            <Style x:Key="Headers" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="32"/>
+
+            </Style>
+            
+            <!--Base Style of all primary screen Button-->
+            <Style x:Key="ButtonPrimer" TargetType="Button">
+                <Setter Property="Width" Value="75"/>
+                <Setter Property="Height" Value="50"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="10"
+                                    Padding="10 5"
+                                    TextBlock.FontWeight="ExtraBold"
+                                    Width="{TemplateBinding Width}"
+                                    Height="{TemplateBinding Height}">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Content="{TemplateBinding Content}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <!---Unique Button Styles-->
+            <Style x:Key="AddButton" BasedOn="{StaticResource ButtonPrimer}" TargetType="Button">
+                <Setter Property="Background" Value="LightSteelBlue"/>
+                <!--Minor animation: Context color change to indicate visually which item is being affected-->
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="AliceBlue" 
+                                                    Duration="0:0:0.1"
+                                                    Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="LightSteelBlue"
+                                                    Duration="0:0:0.1"
+                                                    Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="EditButton" BasedOn="{StaticResource ButtonPrimer}" TargetType="Button">
+                <Setter Property="Background" Value="DarkSlateGray"/>
+                <!--Minor animation: Context color change to indicate visually which item is being affected-->
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="DarkGray" 
+                                                    Duration="0:0:0.10"
+                                                    Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="DarkSlateGray"
+                                                    Duration="0:0:0.2"
+                                                    Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="DeleteButton" BasedOn="{StaticResource ButtonPrimer}" TargetType="Button">
+                <Setter Property="Background" Value="Red"/>
+                <!--Minor animation: Context color change to indicate visually which item is being affected-->
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="DarkRed" 
+                                                    Duration="0:0:0.10"
+                                                    Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="Red"
+                                                    Duration="0:0:0.2"
+                                                    Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="Refresh" BasedOn="{StaticResource ButtonPrimer}" TargetType="Button">
+                <Setter Property="Background" Value="MediumAquamarine"/>
+                <!--Minor animation: Context color change to indicate visually which item is being affected-->
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="DimGray" 
+                                                    Duration="0:0:0.10"
+                                                    Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="MediumAquamarine"
+                                                    Duration="0:0:0.2"
+                                                    Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="FormButton" TargetType="Button">
+                <Setter Property="Width" Value="60"/>
+                <Setter Property="Height" Value="25"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5"
+                                    Padding="8 2"
+                                    TextBlock.FontWeight="DemiBold"
+                                    Width="{TemplateBinding Width}"
+                                    Height="{TemplateBinding Height}">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  Content="{TemplateBinding Content}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="SubmitButton" BasedOn="{StaticResource FormButton}" TargetType="Button">
+                <Setter Property="Background" Value="GhostWhite"/>
+                <Setter Property="Foreground" Value="CornflowerBlue"/>
+                <!--Minor animation: Context color change to indicate visually which item is being affected-->
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Trigger.EnterActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="CornflowerBlue" 
+                                                    Duration="0:0:0.1"
+                                                    Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                    <ColorAnimation To="AliceBlue" 
+                                                    Duration="0:0:0.1"
+                                                    Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="GhostWhite"
+                                                    Duration="0:0:0.1"
+                                                    Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"/>
+                                    <ColorAnimation To="CornflowerBlue" 
+                                                    Duration="0:0:0.1"
+                                                    Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </Trigger.ExitActions>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value=".25"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

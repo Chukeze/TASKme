@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="TaskMe.Views.TaskMeContainerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TaskMe.Views" 
+             xmlns:tasklistcomponent="clr-namespace:TaskMe.Views.Components.TaskList"
+             xmlns:menucomponent ="clr-namespace:TaskMe.Views.Components.Menu"
+             xmlns:taskdetailcomponent ="clr-namespace:TaskMe.Views.Components.TaskDetails"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- Header-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Task Me"
+                       Style="{StaticResource Headers}"/>
+            <Button Content="Refresh"
+                    Style="{StaticResource Refresh}"
+                    Command="{Binding RefreshViewCommand}"
+                    />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Menu-->
+            <menucomponent:Menu Grid.Column="0"/>
+            
+            <!-- TaskList-->
+            <tasklistcomponent:TaskList Grid.Column="1" DataContext="{Binding TasksListViewModel}"/>
+
+            <taskdetailcomponent:TaskDetails Grid.Column="2" DataContext="{Binding TaskDetailsViewModel}"/>
+        </Grid>
+    </Grid>
+</UserControl>

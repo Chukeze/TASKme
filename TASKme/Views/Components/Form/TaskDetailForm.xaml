@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="TaskMe.Views.Components.Form.TaskDetailForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TaskMe.Views.Components.Form"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <!-- Task Form Component that is Inherited by Edit/Add view -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.IsSharedSizeScope="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Task Name -->
+            <Grid Grid.Row="0" Margin="0 20 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
+                    <ColumnDefinition Width="*" MaxWidth="250" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                            Grid.Column="0"
+                            FontWeight="Bold"
+                            Text="Task Name:" 
+                            />
+
+                <TextBox
+                            Grid.Column="1"
+                            Margin="20 0 0 0"
+                            VerticalAlignment="Center"
+                            Text="{Binding TaskName, UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+
+            <!-- Task Description-->
+            <Grid Grid.Row="1" Margin="0 20 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
+                    <ColumnDefinition Width="*" MaxWidth="250" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                            Grid.Column="0"
+                            FontWeight="Bold"
+                            Text="Task Description:" />
+
+                <TextBox
+                            Grid.Column="1"
+                            Margin="20 0 0 0"
+                            Text="{Binding TaskDescription}" />
+            </Grid>
+            
+            <!-- Status -->
+            <Grid Grid.Row="2" Margin="0 20 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                            Grid.Column="0"
+                            FontWeight="Bold"
+                            Text="Status:" />
+
+                <CheckBox
+                            Grid.Column="1"
+                            Margin="20 0 0 0"
+                            VerticalAlignment="Center"
+                            IsChecked="{Binding IsComplete}" />
+            </Grid>
+            
+            <!-- Type -->
+            <Grid Grid.Row="3" Margin="0 20 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
+                    <ColumnDefinition Width="*" MaxWidth="250" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                            Grid.Column="0"
+                            FontWeight="Bold"
+                            Text="Type:" />
+
+                <TextBox
+                            Grid.Column="1"
+                            Margin="20 0 0 0"
+                            Text="{Binding TaskType}" />
+            </Grid>
+        </Grid>
+        
+        <!-- Form Action Buttons -->
+        <WrapPanel Grid.Row="1" Margin="10 25 0 0" >
+            <Button Content="Submit" Margin="0 0 10 0" 
+                    Command="{Binding SubmitCommand}" 
+                    Style="{StaticResource SubmitButton}"
+                    IsEnabled="{Binding CanSubmit}"/>
+            <Button Content="Cancel" 
+                    Command="{Binding CancelCommand}" 
+                    Style="{StaticResource FormButton}" />
+        </WrapPanel>
+    </Grid>
+</UserControl>
